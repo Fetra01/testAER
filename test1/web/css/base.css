@@ -1,0 +1,31 @@
+.headerContainer{
+    background-color:#999999;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.headerLogo{
+    align-items: flex-start;
+}
+
+
+.headerUe{
+    width: 20%;
+    display: flex;
+    align-items:center;
+}
+.imageUe{
+    margin-bottom: 17%;
+}
+
+/*container du body base.html*/
+.baseBodyContainer{
+    background-color:#dcdcdc;
+}
+/*container du footer base.html*/
+.baseBodyContainerBas{
+    background-color:#dcdcdc;
+
+}

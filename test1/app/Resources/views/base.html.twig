@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <!--le premier link permet le css de base.html-->
+        <link href="{{ asset('/css/base.css') }}" rel="stylesheet">
+        <!--le second link permet le css des pages.html(on parle de toute les entities)-->
+        <link href="{{ asset('/css/pages.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+<div class="baseBodyContainer">
+    <header>
+        <!--concatenation de la class headerContainer avec la df(display flex)-->
+        <div class="headerContainer ">
+            <div class="headerLogo ">
+                <img src="{{ asset('image/logo.png') }}" alt="ADRAR" />
+            </div>
+            <div class="headerUe">
+                <img class="imageUe" src="{{ asset('image/ue.png') }}" alt="ADRAR" />
+            </div>
+        </div>
+    </header>
+    {% block body %}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}
+</div>
+</body>
+
+</html>

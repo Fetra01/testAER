@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Teacher</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Email</th>
+                <td>{{ teacher.email }}</td>
+            </tr>
+            <tr>
+                <th>Admin</th>
+                <td>{% if teacher.admin %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Coordinator</th>
+                <td>{% if teacher.coordinator %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ teacher.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ teacher.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ teacher.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ teacher.login }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ teacher.password }}</td>
+            </tr>
+            <tr>
+                <th>Entrydate</th>
+                <td>{% if teacher.entryDate %}{{ teacher.entryDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Leavingdate</th>
+                <td>{% if teacher.leavingDate %}{{ teacher.leavingDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('teacher_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('teacher_edit', { 'id': teacher.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
