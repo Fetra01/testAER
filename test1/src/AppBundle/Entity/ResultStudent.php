@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * ResultStudent
  *
@@ -32,6 +33,7 @@ class ResultStudent
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quizz",cascade={"persist", "remove", "merge"} )
+     *
      */
     private $quizz;
 
@@ -39,6 +41,12 @@ class ResultStudent
      * @ORM\Column(type="integer")
      */
     private $nbQuestion;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $response; //Réponse à la question
+
 
 
     /**
@@ -113,6 +121,22 @@ class ResultStudent
     public function setNbQuestion($nbQuestion)
     {
         $this->nbQuestion = $nbQuestion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param mixed $response
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
     }
 }
 

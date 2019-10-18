@@ -15,7 +15,7 @@
                     {% for survey in listSurvey %}
                         <tr>
                             <td>{{ survey.title }}</td>
-                            
+                            <td><a class="btn btn-info" href="{{ path('resultStudentrenseigner_index',{'id' :survey.id})}}" >Remplir</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -43,12 +43,6 @@ class Quizz
      */
     private $proposition;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="response", type="string", length=255)
-     */
-    private $response;
 
 
     /**
@@ -133,28 +127,7 @@ class Quizz
         return $this->proposition;
     }
 
-    /**
-     * Set response
-     *
-     * @param mixed $response
-     *
-     * @return Quizz
-     */
-    public function setResponse($response)
-    {
-        $this->response = $response;
 
-        return $this;
-    }
 
-    /**
-     * Get response
-     *
-     * @return mixed
-     */
-    public function getResponse()
-    {
-        return $this->response;
-    }
 }
 
