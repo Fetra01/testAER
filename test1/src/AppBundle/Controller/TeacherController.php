@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Teacher;
+use AppBundle\Entity\Promotion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -63,12 +64,13 @@ class TeacherController extends Controller
      * @Route("/{id}", name="teacher_show")
      * @Method("GET")
      */
-    public function showAction(Teacher $teacher)
+    public function showAction(Teacher $teacher, Promotion $promotion)
     {
         $deleteForm = $this->createDeleteForm($teacher);
 
         return $this->render('teacher/show.html.twig', array(
             'teacher' => $teacher,
+            'promotion' => $promotion,
             'delete_form' => $deleteForm->createView(),
         ));
     }

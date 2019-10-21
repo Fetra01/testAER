@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.displayNo{
+    display:none;
+}
+
 /*container dans {block body}*/
 .bodyContainer{
     background-color:white;
