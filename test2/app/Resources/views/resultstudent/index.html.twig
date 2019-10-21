@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Resultstudents list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student</th>
+                <th>Survey</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for resultStudent in resultStudents %}
+            <tr>
+                <td><a href="{{ path('resultstudent_show', { 'id': resultStudent.id }) }}">{{ resultStudent.id }}</a></td>
+                <td>{{ resultStudent.student }}</td>
+                <td>{{ resultStudent.survey }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('resultstudent_show', { 'id': resultStudent.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('resultstudent_edit', { 'id': resultStudent.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('resultstudent_new') }}">Create a new resultStudent</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Survey</h1>
+
+    {#
+        <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ survey.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ survey.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('survey_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('survey_edit', { 'id': survey.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    #}
+    {% if success == false %}
+        <div class="panel panel-danger">
+            <div class="panel-heading">Erreur lors de la création de votre QCM</div>
+            <div class="panel-body">
+                {{ message }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if success == true %}
+        <div class="panel panel-success">
+            <div class="panel-heading">Info</div>
+            <div class="panel-body">
+                Le QCM a été créé avec succès !
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

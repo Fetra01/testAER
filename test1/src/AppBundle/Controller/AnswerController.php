@@ -36,7 +36,7 @@ class AnswerController extends Controller
     {
 
         $quizzRepository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Quizz');
-        $title = $this->getDoctrine()->getManager()->getRepository('AppBundle:Survey')->findBy(['id'=>$id]);
+        $title = $this->getDoctrine()->getManager()->getRepository('AppBundle:Survey')->find($id);
         $quizz = $quizzRepository->findBy(['survey'=>$id]);
 
 
@@ -48,9 +48,14 @@ class AnswerController extends Controller
 
 
         if ($request->isMethod('POST')) {
-           // $proposition = $request->get('proposition');
+           $proposition = $request->get('proposition');
             //$reponse = $request->get('response');
-            //$nbReponse = 0;
+            $nbReponse = 0;
+            foreach ($quizz as $value){
+                if ($value->getReponse() == $proposition[$value->getId()]){
+                    $nbReponse= $nbReponse+1;
+                }
+            }
 
 
 
@@ -58,7 +63,7 @@ class AnswerController extends Controller
             $resultStudent = new ResultStudent();
             $resultStudent->setStudent($request->request->get('student'));
             $resultStudent->setNbQuestion(count($quizz));
-            $resultStudent->setQuizz($request->request->get('quiz'));
+            $resultStudent->setQuizz($title);
             $resultStudent->setResponse($request->request->get('response'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($resultStudent);

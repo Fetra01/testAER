@@ -1,0 +1,15 @@
+/*h1*/
+.bigTitle{
+    text-align: center;
+}
+
+.displayNo{
+    display:none;
+}
+
+/*container dans {block body}*/
+.bodyContainer{
+    background-color:white;
+    margin: 0 25% 0 25%;
+    padding: 0 0 25px 0;
+}
