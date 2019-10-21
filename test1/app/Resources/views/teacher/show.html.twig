@@ -38,6 +38,10 @@
                 <td>{{ teacher.password }}</td>
             </tr>
             <tr>
+                <th>Promotion</th>
+                <td>{{ promotion.promo }}</td>
+            </tr>
+            <tr>
                 <th>Entrydate</th>
                 <td>{% if teacher.entryDate %}{{ teacher.entryDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
