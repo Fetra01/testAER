@@ -25,7 +25,7 @@ class Student extends User
 
     public function __toString()
     {
-        return $this->lastname.' '.$this->firstname;
+        return $this->lastName.' '.$this->firstName;
     }
 
 

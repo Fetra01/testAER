@@ -25,7 +25,6 @@ class ResultStudent
 
     /**
      * @var string
-     * @ORM\Column(name="student_id", type="string", length=255)
      * @ManyToOne(targetEntity="Student")
      *@JoinColumn(name="student_id",referencedColumnName="id")
      */
@@ -34,10 +33,17 @@ class ResultStudent
     /**
      * @var string
      *@ManyToOne(targetEntity="Survey")
-     *@JoinColumn(name="Survey_id",referencedColumnName="id")
-     * @ORM\Column(name="survey_id", type="string", length=255)
+     *@JoinColumn(name="survey_id",referencedColumnName="id")
      */
     private $survey;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="response", type="array")
+     */
+    private $response;
+
 
 
     /**
@@ -96,6 +102,30 @@ class ResultStudent
     public function getSurvey()
     {
         return $this->survey;
+    }
+
+    /**
+     * Set response 
+     *
+     * @param array $response
+     *
+     * @return resultstudent
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * Get response
+     *
+     * @return array
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
 
