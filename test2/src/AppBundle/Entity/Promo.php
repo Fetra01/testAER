@@ -60,7 +60,7 @@ class Promo
 
     public function __toString()
     {
-        return $this->name.' '.$this->town;
+        return $this->name.' '.$this->town.' '.$this->entryDate->format('Y-m-d ').' '.$this->leavingDate->format('Y-m-d ');
     }
 
 
