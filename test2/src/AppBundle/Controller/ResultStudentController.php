@@ -39,23 +39,46 @@ class ResultStudentController extends Controller
      */
     public function newAction(Request $request)
     {
-        $resultStudent = new Resultstudent();
-        $form = $this->createForm('AppBundle\Form\ResultStudentType', $resultStudent);
-        $form->handleRequest($request);
+        if($request->isMethod('GET')) {
+            $studentRepository= $this->getDoctrine()->getRepository('AppBundle:Student');
+            $students=$studentRepository->findAll();
+            $quizRepository= $this->getDoctrine()->getRepository('AppBundle:Quiz');
+            $quiz=$quizRepository->find(2);
+            var_dump($students[3]->getPromo()->getName());
+            return $this->render('resultstudent/new.html.twig', array('students'=>$students, 'quiz' =>$quiz));
+        }
+        if($request->isMethod('POST')) {
+            $student= $request->request->get('student');
+            $studentRepository= $this->getDoctrine()->getRepository('AppBundle:Student');
+            $students=$studentRepository->findBy(array('id'=>$student));
+            $promo_id= $students[0]->getPromo()->getId();
+            $surveyRepository= $this->getDoctrine()->getRepository('AppBundle:Survey');
+            $surveys=$surveyRepository->findBy( array('promo'=>$promo_id));
+            $survey_id= $surveys[0]->getId();
+            $quizRepository= $this->getDoctrine()->getRepository('AppBundle:Quiz');
+            $quizz=$quizRepository->findBy( array('survey'=>$survey_id));
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($resultStudent);
-            $em->flush();
 
-            return $this->redirectToRoute('resultstudent_show', array('id' => $resultStudent->getId()));
+            return $this->render('resultstudent/form.html.twig', array('survey'=>$surveys, 'quizz'=>$quizz));
         }
 
-        return $this->render('resultstudent/new.html.twig', array(
-            'resultStudent' => $resultStudent,
-            'form' => $form->createView(),
-        ));
     }
+    /**
+     * Creates a form resultStudent entity.
+     *
+     * @Route("/form", name="resultstudent_form")
+     * @Method({"GET", "POST"})
+     */
+    public function formAction(Request $request)
+    {
+        //traitement de formulaire de reponse
+        if($request->isMethod('POST')) {
+            var_dump($request->request->get('choice0'));
+            return $this->render('resultstudent/finish.html.twig');
+        }
+        }
+
+
 
     /**
      * Finds and displays a resultStudent entity.
