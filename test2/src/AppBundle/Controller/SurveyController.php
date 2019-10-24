@@ -79,7 +79,7 @@ class SurveyController extends Controller
             }
            $survey = new Survey();
             $survey->setTitle($titre);
-            //var_dump($promo); die;
+
             $survey->setPromo($promo[0]);
             for($i=1; $i<=$nbQuestions; $i++)
             {
