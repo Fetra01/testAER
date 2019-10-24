@@ -74,9 +74,9 @@ class ResultStudentController extends Controller
     {
         //traitement de formulaire de reponse
         $id=$request->request->get('survey');
-
         $surveyRepository= $this->getDoctrine()->getRepository('AppBundle:Survey');
         $survey=$surveyRepository->findBy( array('id'=>$id));
+
             $nbQuestions=$request->request->get('nbQuestions');
 
             $choice=array();
@@ -85,7 +85,7 @@ class ResultStudentController extends Controller
 
             }
             $resultstudent = new ResultStudent();
-            //$resultstudent->setStudent();
+            //$resultstudent->setStudent($student[0]);
             $resultstudent->setSurvey($survey[0]);
 
             $resultstudent->setResponse($choice);
