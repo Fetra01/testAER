@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ResultStudent;
+use AppBundle\Entity\Survey;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -72,19 +73,45 @@ class ResultStudentController extends Controller
     public function formAction(Request $request)
     {
         //traitement de formulaire de reponse
-        if($request->isMethod('POST')) {
+        $id=$request->request->get('survey');
 
-
+        $surveyRepository= $this->getDoctrine()->getRepository('AppBundle:Survey');
+        $survey=$surveyRepository->findBy( array('id'=>$id));
             $nbQuestions=$request->request->get('nbQuestions');
-            var_dump(intval($nbQuestions));
+
             $choice=array();
             for ($i=0; $i<intval($nbQuestions);$i++){
               $choice[$i]=  $request->request->get('choice'.$i);
 
             }
-            var_dump($choice);
+            $resultstudent = new ResultStudent();
+            //$resultstudent->setStudent();
+            $resultstudent->setSurvey($survey[0]);
+
+            $resultstudent->setResponse($choice);
+
+
+
+
+
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            try{
+                $em->persist($resultstudent);
+                $em->flush();
+                $success = true;
+            }
+            catch(Exception $e){
+                $success = false;
+                $message = $e->getMessage();
+            }
             return $this->render('resultstudent/finish.html.twig');
-        }
+
+
+
+
     }
 
 
