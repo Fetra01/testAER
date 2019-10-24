@@ -88,6 +88,7 @@ class SurveyController extends Controller
                 $quiz ->setProposition($questions[$i-1]['proposition']);
                 $quiz ->setSurvey($survey);
                 $survey->getQuiz()->add($quiz);
+                $survey->setNbQuestions($nbQuestions);
             }
 
             $em = $this->getDoctrine()->getManager();

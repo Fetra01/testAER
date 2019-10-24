@@ -49,6 +49,11 @@ class Survey
      */
     private $promo;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbQuestions;
+
     public function __toString()
     {
         return $this->title;
@@ -136,8 +141,29 @@ class Survey
         return $this->promo;
     }
 
+
+    /**
+     * @param mixed $nbQuestions
+     */
+    public function setNbQuestions($nbQuestions)
+    {
+        $this->nbQuestions = $nbQuestions;
+    }
+    /**
+     * @return mixed
+     */
+
+    public function getNbQuestions()
+    {
+        return $this->nbQuestions;
+    }
+
     public function __construct() {
         $this->quiz= new ArrayCollection();
     }
+
+
+
+
 }
 

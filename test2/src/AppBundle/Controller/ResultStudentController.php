@@ -44,7 +44,7 @@ class ResultStudentController extends Controller
             $students=$studentRepository->findAll();
             $quizRepository= $this->getDoctrine()->getRepository('AppBundle:Quiz');
             $quiz=$quizRepository->find(2);
-            var_dump($students[3]->getPromo()->getName());
+            var_dump($students[1]->getPromo()->getName());
             return $this->render('resultstudent/new.html.twig', array('students'=>$students, 'quiz' =>$quiz));
         }
         if($request->isMethod('POST')) {
@@ -73,10 +73,11 @@ class ResultStudentController extends Controller
     {
         //traitement de formulaire de reponse
         if($request->isMethod('POST')) {
-            var_dump($request->request->get('choice0'));
+            $choice=$request->request->get('choice');
+            var_dump($choice);
             return $this->render('resultstudent/finish.html.twig');
         }
-        }
+    }
 
 
 
