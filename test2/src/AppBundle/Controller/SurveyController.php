@@ -59,7 +59,7 @@ class SurveyController extends Controller
             $promotion= $request->request->get('promo');
 
             $promo=$promoRepository->findBy(array('name'=>$promotion));
-            //var_dump($promo[0]->getId());die;
+           // var_dump($promo[0]->getId());die;
             $titre = $request->request->get('titre');
             $nbQuestions = $request->request->get('nbQuestions');
             $questions = array();
@@ -79,6 +79,7 @@ class SurveyController extends Controller
             }
            $survey = new Survey();
             $survey->setTitle($titre);
+            //var_dump($promo); die;
             $survey->setPromo($promo[0]);
             for($i=1; $i<=$nbQuestions; $i++)
             {

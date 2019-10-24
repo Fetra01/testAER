@@ -3,7 +3,34 @@
 {% block body %}
     <h1>Resultstudent creation</h1>
 
-    {{ form_start(form) }}
+    <form method="post" action="{{ path('resultstudent_new') }}" data-toggle="validator" id="formCreate">
+        <select name="student">
+        {% for student in students %}
+            <option>
+                 {{ student.id }}
+
+            </option>
+        {% endfor %}
+        </select>
+        </select><br/>
+        <button type="submit">accéder au formulaire</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {#{{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
@@ -12,5 +39,5 @@
         <li>
             <a href="{{ path('resultstudent_index') }}">Back to the list</a>
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}
