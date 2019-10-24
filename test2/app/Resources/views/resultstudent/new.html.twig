@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Resultstudent creation</h1>
 
-    <form method="post" action="{{ path('resultstudent_new') }}" data-toggle="validator" id="formCreate">
+    <form method="post" action="{{ path('resultstudent_new') }}" >
         <select name="student">
         {% for student in students %}
             <option>

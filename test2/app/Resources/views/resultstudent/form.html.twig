@@ -3,16 +3,23 @@
 {% block body %}
 <h1>Resultstudent creation</h1>
 {% set i=0  %}
-<form method="post" action="{{ path('resultstudent_form') }}" data-toggle="validator" id="formCreate">
+
+    <h1>{{ surveys[0] }}</h1>
+
+
+<form method="post" action="{{ path('resultstudent_form') }}">
    {% for quiz in quizz %}
-       <label>{{ quiz.question }}</label><br>
+       <label>{{ quiz.question }}</label>
+       <select name="choice{{ i }}">
        {% for prop in quiz.proposition %}
-           <input type="radio" name="choice{{ i }}" value="{{ prop }}"> {{ prop }}<br>
+           <option>{{ prop }}</option>
 
        {% endfor %}
        {% set i=i+1 %}
+      </select><br>
     {% endfor %}
     <br/>
+    <input type="hidden" name="nbQuestions" value={{ surveys[0].nbQuestions }}>
     <button type="submit">valider vos réponses</button>
 </form>
 {% endblock %}

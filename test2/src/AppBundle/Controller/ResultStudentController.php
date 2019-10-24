@@ -59,7 +59,7 @@ class ResultStudentController extends Controller
             $quizz=$quizRepository->findBy( array('survey'=>$survey_id));
 
 
-            return $this->render('resultstudent/form.html.twig', array('survey'=>$surveys, 'quizz'=>$quizz));
+            return $this->render('resultstudent/form.html.twig', array('surveys'=>$surveys, 'quizz'=>$quizz));
         }
 
     }
@@ -73,7 +73,15 @@ class ResultStudentController extends Controller
     {
         //traitement de formulaire de reponse
         if($request->isMethod('POST')) {
-            $choice=$request->request->get('choice');
+
+
+            $nbQuestions=$request->request->get('nbQuestions');
+            var_dump(intval($nbQuestions));
+            $choice=array();
+            for ($i=0; $i<intval($nbQuestions);$i++){
+              $choice[$i]=  $request->request->get('choice'.$i);
+
+            }
             var_dump($choice);
             return $this->render('resultstudent/finish.html.twig');
         }
